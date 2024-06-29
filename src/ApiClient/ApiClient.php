@@ -50,6 +50,6 @@ final class ApiClient implements ApiClientInterface
 
     private function generateCacheKey(string $url, string $bin): string
     {
-        return 'rates_'.md5($url.$bin);
+        return md5($url.$bin);
     }
 }
