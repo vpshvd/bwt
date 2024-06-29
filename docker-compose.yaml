@@ -1,0 +1,30 @@
+services:
+    php:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        container_name: bwt-php
+        restart: unless-stopped
+        volumes:
+            - ./:/srv/app
+        env_file:
+            - .env
+        networks:
+            - bwt
+    
+    caddy:
+        image: caddy:2.7-alpine
+        container_name: caddy
+        depends_on:
+            - php
+        restart: unless-stopped
+        ports:
+            - "8383:80"
+        volumes:
+            - ./caddy:/etc/caddy
+        networks:
+            - bwt
+
+networks:
+    bwt:
+        driver: bridge

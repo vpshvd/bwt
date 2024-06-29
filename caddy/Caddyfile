@@ -1,0 +1,14 @@
+{
+	http_port 80
+}
+
+:80 {
+	log
+
+	root * /srv/app/public
+	php_fastcgi bwt-php:9000 {
+		trusted_proxies private_ranges
+	}
+	encode zstd gzip
+	file_server browse
+}

@@ -1,0 +1,1 @@
+bin: "45717360", amount: "100.00", currency: "EUR"
